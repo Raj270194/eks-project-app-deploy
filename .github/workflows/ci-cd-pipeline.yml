@@ -27,11 +27,11 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t emergencytechops/mlops-models:latest .
+          docker build -t rajashekar270194/raj-practicemlops:latest .
 
       - name: Tag Docker image
         run: |
-          docker tag emergencytechops/mlops-models:latest emergencytechops/mlops-models:${{ github.sha }}
+          docker tag rajashekar270194/raj-practicemlops:latest rajashekar270194/raj-practicemlops:${{ github.sha }}
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -64,8 +64,8 @@ jobs:
       
       - name: Push Docker image to Docker Hub
         run: |
-          docker push emergencytechops/mlops-models:latest
-          docker push emergencytechops/mlops-models:${{ github.sha }}
+          docker push rajashekar270194/raj-practicemlops:latest
+          docker push rajashekar270194/raj-practicemlops:${{ github.sha }}
 
   deploy:
     needs: build
@@ -87,7 +87,7 @@ jobs:
       - name: Generate Helm chart
         run: |
           helm create dockerlabs
-          sed -i 's|repository: ""|repository: emergencytechops/mlops-models|' ./dockerlabs/values.yaml
+          sed -i 's|repository: ""|repository: rajashekar270194/raj-practicemlops|' ./dockerlabs/values.yaml
           sed -i 's|tag: ""|tag: latest|' ./dockerlabs/values.yaml
 
       - name: Package Helm chart
